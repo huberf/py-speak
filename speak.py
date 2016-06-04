@@ -28,6 +28,7 @@ input_thread = threading.Thread(target=add_input, args=(input_queue,))
 input_thread.daemon = True
 input_thread.start()
 
+# Text to speech synthesizer
 class speaker:
     global engine
     def say(self, text):
@@ -37,6 +38,7 @@ class speaker:
         else:
             system('say ' + text)
 
+# Nonblocking input
 class get:
     global input_queue
     global add_input
