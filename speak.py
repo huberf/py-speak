@@ -28,15 +28,21 @@ input_thread = threading.Thread(target=add_input, args=(input_queue,))
 input_thread.daemon = True
 input_thread.start()
 
+def macSpeak(text):
+  system('say ' + text)
+
+def winSpeak(text, engine):
+  engine.say(text)
+  engine.runAndWait()
+
 # Text to speech synthesizer
 class speaker:
     global engine
     def say(self, text):
         if not mute and isWindows:
-            engine.say(text)
-            engine.runAndWait()
+            winSpeak(text, engine)
         else:
-            system('say ' + text)
+            macSpeak(text)
 
 # Nonblocking input
 class get:
